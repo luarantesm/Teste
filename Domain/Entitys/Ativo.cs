@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-
-namespace Domain.Entidades
+﻿namespace Domain.Entidades
 {
     public class Ativo
     {

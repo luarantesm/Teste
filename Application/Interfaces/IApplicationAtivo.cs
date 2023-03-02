@@ -4,6 +4,6 @@ namespace Application.Interfaces
 {
     public interface IApplicationAtivo
     {
-        Task Add(AtivoDto ativoDto);
+        Task<IEnumerable<AtivoDto>> BuscaDadosAtivo(string ativo);
     }
 }

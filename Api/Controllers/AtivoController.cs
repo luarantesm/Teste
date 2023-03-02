@@ -1,5 +1,4 @@
-﻿using Application.Dtos;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -15,16 +14,16 @@ namespace Api.Controllers
             _applicationAtivo = applicationAtivo;
         }
 
-        [HttpPost]
-        public ActionResult Post([FromBody] AtivoDto ativoDto)
+        [HttpGet]
+        public async Task<IActionResult> Get(string nome)
         {
             try
             {
-                if (ativoDto == null)
+                if (string.IsNullOrEmpty(nome))
                     return NotFound();
 
-                _applicationAtivo.Add(ativoDto);
-                return Ok("Cliente cadastrado com sucesso!");
+                var ativos = _applicationAtivo.BuscaDadosAtivo(nome);
+                return Ok(ativos);
             }
             catch (Exception ex)
             {

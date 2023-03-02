@@ -13,9 +13,14 @@ namespace Domain.Services
             _ativoRepositorio = ativoRepositorio;
         }
 
-        public void Add(Ativo ativo)
+        public async Task<bool> SalvarLista(IEnumerable<Ativo> ativos)
         {
-            _ativoRepositorio.Add(ativo);
+            return await _ativoRepositorio.SalvarLista(ativos);
+        }
+
+        public async Task<IEnumerable<Ativo>> BuscaHistorico(string nomeAtivo, DateTime dataInicio, DateTime dataFinal)
+        {
+            return await _ativoRepositorio.BuscaHistorico(nomeAtivo, dataInicio, dataFinal);
         }
     }
 }

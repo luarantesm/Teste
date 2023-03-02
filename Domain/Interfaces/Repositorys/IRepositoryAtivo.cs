@@ -4,6 +4,8 @@ namespace Domain.Interfaces.Repositorios
 {
     public interface IRepositoryAtivo
     {
-        void Add(Ativo ativo);
+        Task<bool> SalvarLista(IEnumerable<Ativo> ativos);
+
+        Task<IEnumerable<Ativo>> BuscaHistorico(string nomeAtivo, DateTime dataInicio, DateTime dataFinal);
     }
 }

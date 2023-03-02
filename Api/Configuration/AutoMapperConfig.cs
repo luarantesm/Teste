@@ -12,6 +12,8 @@ namespace Api.Configuration
             {
                 cfg.CreateMap<AtivoDto, Ativo>();
                 cfg.CreateMap<Ativo, AtivoDto>();
+                cfg.CreateMap<IEnumerable<AtivoDto>, IEnumerable<Ativo>>();
+                cfg.CreateMap<IEnumerable<Ativo>, IEnumerable<AtivoDto>>();
             });
 
             IMapper mapper = config.CreateMapper();

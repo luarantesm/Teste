@@ -1,10 +1,9 @@
 ﻿using Domain.Entidades;
-using Domain.EntitysExternal;
 
 namespace Application.Interfaces
 {
     public interface IApplicationYahoo
     {
-        Task<Ativo> BuscaAtivos(string ativo);
+        Task<IEnumerable<Ativo>> BuscaAtivos(string ativo, DateTime dataInicio, DateTime dataFim);
     }
 }
