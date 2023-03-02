@@ -22,7 +22,7 @@ namespace Api.Controllers
                 if (string.IsNullOrEmpty(nome))
                     return NotFound();
 
-                var ativos = _applicationAtivo.BuscaDadosAtivo(nome);
+                var ativos = await _applicationAtivo.BuscaDadosAtivo(nome);
                 return Ok(ativos);
             }
             catch (Exception ex)

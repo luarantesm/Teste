@@ -18,9 +18,9 @@ namespace Domain.Services
             return await _ativoRepositorio.SalvarLista(ativos);
         }
 
-        public async Task<IEnumerable<Ativo>> BuscaHistorico(string nomeAtivo, DateTime dataInicio, DateTime dataFinal)
+        public IEnumerable<Ativo> BuscaHistorico(string nomeAtivo, DateTime dataInicio, DateTime dataFinal)
         {
-            return await _ativoRepositorio.BuscaHistorico(nomeAtivo, dataInicio, dataFinal);
+            return _ativoRepositorio.BuscaHistorico(nomeAtivo, dataInicio, dataFinal);
         }
     }
 }

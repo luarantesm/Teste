@@ -1,7 +1,6 @@
 ﻿using Domain.Entidades;
 using Domain.Interfaces.Repositorios;
 using Infra.Contexto;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Repositorio
 {
@@ -18,21 +17,22 @@ namespace Infra.Repositorio
         {
             try
             {
-                _ativoContexto.Set<Ativo>().AddRange(ativos);
+                await _ativoContexto.AddRangeAsync(ativos);
+                _ativoContexto.SaveChanges();
+
                 return true;
             }
             catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
         }
 
-        public async Task<IEnumerable<Ativo>> BuscaHistorico(string nomeAtivo, DateTime dataInicio, DateTime dataFinal)
+        public IEnumerable<Ativo> BuscaHistorico(string nomeAtivo, DateTime dataInicio, DateTime dataFinal)
         {
             try
             {
-                var tete = await _ativoContexto.Ativo.Where(x => x.Nome == nomeAtivo && x.Data <= dataInicio && x.Data >= dataFinal).AsNoTracking().ToListAsync();
-                return tete;
+                return _ativoContexto.Ativo.Where(x => x.Nome == nomeAtivo && x.Data >= dataInicio && x.Data <= dataFinal).ToList();
             }
             catch (Exception ex)
             {

@@ -6,6 +6,6 @@ namespace Domain.Interfaces.Repositorios
     {
         Task<bool> SalvarLista(IEnumerable<Ativo> ativos);
 
-        Task<IEnumerable<Ativo>> BuscaHistorico(string nomeAtivo, DateTime dataInicio, DateTime dataFinal);
+        IEnumerable<Ativo> BuscaHistorico(string nomeAtivo, DateTime dataInicio, DateTime dataFinal);
     }
 }

@@ -22,12 +22,6 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ativo.API", Version = "v1" });
 });
 
-//builder.Services.AddHttpClient(name: "yahoo", c =>
-//{
-//    c.BaseAddress = new Uri(builder.Configuration.GetConnectionString("ApiConnection"));
-//    c.DefaultRequestHeaders.Add("Accept", "application/json");
-//});
-
 builder.Services.AddHttpClient<IApplicationYahoo, ApplicationYahoo>(client =>
 {
     client.BaseAddress = new Uri("https://query2.finance.yahoo.com/v8/finance/");
@@ -59,8 +53,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
-
-//app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {

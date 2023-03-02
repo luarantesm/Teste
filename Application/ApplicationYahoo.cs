@@ -34,7 +34,7 @@ namespace Application
                 DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
                 DateTime dateTime = Epoch.AddSeconds(e).ToLocalTime();
 
-                listaDatas.Add(dateTime);
+                listaDatas.Add(DateTime.Parse(dateTime.ToString("dd/MM/yyyy")));
             });
 
             List<decimal> listaValores = new List<decimal>();
