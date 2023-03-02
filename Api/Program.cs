@@ -50,6 +50,8 @@ if (app.Environment.IsDevelopment())
                       .AllowAnyMethod());
 }
 
+Infra.Startup.RunMigration<ContextAtivo>(app);
+
 app.UseHttpsRedirection();
 
 app.UseRouting();

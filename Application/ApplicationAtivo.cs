@@ -22,7 +22,7 @@ namespace Application
         public async Task<IEnumerable<AtivoDto>> BuscaDadosAtivo(string nomeAtivo)
         {
             DateTime dataFim = DateTime.Parse(DateTime.UtcNow.ToString("dd/MM/yyyy"));
-            DateTime dataInicio = DateTime.Parse(dataFim.AddDays(-30).ToString("dd/MM/yyyy")); ;
+            DateTime dataInicio = DateTime.Parse(dataFim.AddDays(-30).ToString("dd/MM/yyyy"));
 
             IEnumerable<Ativo> ativos = _ativoService.BuscaHistorico(nomeAtivo, dataInicio, dataFim);
 
