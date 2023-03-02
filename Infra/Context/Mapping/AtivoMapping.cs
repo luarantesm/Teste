@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Domain.Entidades;
 using Microsoft.EntityFrameworkCore;
-using Domain.Entidades;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infra.Context.Mapping
 {

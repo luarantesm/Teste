@@ -5,7 +5,9 @@ namespace Infra.Contexto
 {
     public class ContextAtivo : DbContext
     {
-        public ContextAtivo(DbContextOptions options) : base(options) { }
+        public ContextAtivo(DbContextOptions options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

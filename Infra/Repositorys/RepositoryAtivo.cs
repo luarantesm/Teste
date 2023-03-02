@@ -30,7 +30,7 @@ namespace Infra.Repositorio
         public async Task<IEnumerable<Ativo>> BuscaHistorico(string nomeAtivo, DateTime dataInicio, DateTime dataFinal)
         {
             try
-            { 
+            {
                 var tete = await _ativoContexto.Ativo.Where(x => x.Nome == nomeAtivo && x.Data <= dataInicio && x.Data >= dataFinal).AsNoTracking().ToListAsync();
                 return tete;
             }
