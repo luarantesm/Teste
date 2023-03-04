@@ -18,7 +18,6 @@ namespace Infra.Repositorio
             try
             {
                 await _ativoContexto.AddRangeAsync(ativos);
-                _ativoContexto.SaveChanges();
 
                 return true;
             }

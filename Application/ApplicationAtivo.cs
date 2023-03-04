@@ -2,20 +2,23 @@
 using Application.Interfaces;
 using AutoMapper;
 using Domain.Entidades;
-using Domain.Interfaces.Servicos;
+using Domain.Interfaces;
+using Domain.Interfaces.Repositorios;
 
 namespace Application
 {
     public class ApplicationAtivo : IApplicationAtivo
     {
         private readonly IMapper _mapper;
-        private readonly IServiceAtivo _ativoService;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRepositoryAtivo _repositoryAtivo;
         private readonly IApplicationYahoo _applicationYahoo;
 
-        public ApplicationAtivo(IMapper mapper, IServiceAtivo ativoService, IApplicationYahoo applicationYahoo)
+        public ApplicationAtivo(IMapper mapper, IUnitOfWork unitOfWork, IRepositoryAtivo repositoryAtivo, IApplicationYahoo applicationYahoo)
         {
             _mapper = mapper;
-            _ativoService = ativoService;
+            _unitOfWork = unitOfWork;
+            _repositoryAtivo = repositoryAtivo;
             _applicationYahoo = applicationYahoo;
         }
 
@@ -24,7 +27,7 @@ namespace Application
             DateTime dataFim = DateTime.Parse(DateTime.UtcNow.ToString("dd/MM/yyyy"));
             DateTime dataInicio = DateTime.Parse(dataFim.AddDays(-30).ToString("dd/MM/yyyy"));
 
-            IEnumerable<Ativo> ativos = _ativoService.BuscaHistorico(nomeAtivo, dataInicio, dataFim);
+            IEnumerable<Ativo> ativos = _repositoryAtivo.BuscaHistorico(nomeAtivo, dataInicio, dataFim);
 
             if (!ativos.Any())
             {
@@ -32,10 +35,12 @@ namespace Application
 
                 if (ativos != null)
                 {
-                    var retorno = await _ativoService.SalvarLista(ativos);
+                    var retorno = await _repositoryAtivo.SalvarLista(ativos);
 
                     if (!retorno)
                         return null;
+
+                    _unitOfWork.Commit();
                 }
             }
 

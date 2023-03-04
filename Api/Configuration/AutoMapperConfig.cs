@@ -8,7 +8,7 @@ namespace Api.Configuration
     {
         public static IServiceCollection ResolveAutoMapper(this IServiceCollection services)
         {
-            var config = new AutoMapper.MapperConfiguration(cfg =>
+            var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<AtivoDto, Ativo>();
                 cfg.CreateMap<Ativo, AtivoDto>();

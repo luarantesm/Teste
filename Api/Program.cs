@@ -29,13 +29,6 @@ builder.Services.AddHttpClient<IApplicationYahoo, ApplicationYahoo>(client =>
 
 var app = builder.Build();
 
-app.Use(async (context, next) =>
-{
-    await next.Invoke();
-    var unitOfWork = (IUnitOfWork)context.RequestServices.GetService(typeof(IUnitOfWork));
-    unitOfWork.Commit();
-});
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
